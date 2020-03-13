@@ -76,6 +76,7 @@ export default class ScrollComponent extends BaseScrollComponent {
                 onScroll={this._onScroll}
                 onLayout={(!this._isSizeChangedCalledOnce || this.props.canChangeSize) ? this._onLayout : this.props.onLayout}>
                 <View style={{ flexDirection: this.props.isHorizontal ? "row" : "column" }}>
+                    {this.props.renderHeader ? this.props.renderHeader() : null}
                     {renderContentContainer(contentContainerProps, this.props.children)}
                     {this.props.renderFooter ? this.props.renderFooter() : null}
                 </View>

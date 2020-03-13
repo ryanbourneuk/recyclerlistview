@@ -89,6 +89,7 @@ export interface RecyclerListViewProps {
     onEndReachedThreshold?: number;
     onVisibleIndexesChanged?: TOnItemStatusChanged;
     onVisibleIndicesChanged?: TOnItemStatusChanged;
+    renderHeader?: () => JSX.Element | JSX.Element[] | null;
     renderFooter?: () => JSX.Element | JSX.Element[] | null;
     externalScrollView?: { new(props: ScrollViewDefaultProps): BaseScrollView };
     initialOffset?: number;
@@ -668,6 +669,9 @@ RecyclerListView.propTypes = {
 
     //Provides visible index, helpful in sending impression events etc, onVisibleIndicesChanged(all, now, notNow)
     onVisibleIndicesChanged: PropTypes.func,
+
+    //Provide this method if you want to render a header. Helpful in showing content before the main list.
+    renderHeader: PropTypes.func,
 
     //Provide this method if you want to render a footer. Helpful in showing a loader while doing incremental loads.
     renderFooter: PropTypes.func,
