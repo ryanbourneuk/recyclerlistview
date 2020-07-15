@@ -99,6 +99,13 @@ export default class ScrollComponent extends BaseScrollComponent {
             const contentOffset = event.nativeEvent.contentOffset;
             this._offset = this.props.isHorizontal ? contentOffset.x : contentOffset.y;
             this.props.onScroll(contentOffset.x, contentOffset.y, event);
+
+            // If we've reached the end, we should emit a `onEndReached` event so that the app can force-request the next feed page.
+            if (event.nativeEvent.contentSize.height - (this._offset + event.nativeEvent.layoutMeasurement.height) < 10) {
+                if (this.props.onEndReached) {
+                    this.props.onEndReached();
+                }
+            }
         }
     }
 

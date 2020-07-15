@@ -44,6 +44,12 @@ var ScrollComponent = /** @class */ (function (_super) {
                 var contentOffset = event.nativeEvent.contentOffset;
                 _this._offset = _this.props.isHorizontal ? contentOffset.x : contentOffset.y;
                 _this.props.onScroll(contentOffset.x, contentOffset.y, event);
+                // If we've reached the end, we should emit a `onEndReached` event so that the app can force-request the next feed page.
+                if (event.nativeEvent.contentSize.height - (_this._offset + event.nativeEvent.layoutMeasurement.height) < 10) {
+                    if (_this.props.onEndReached) {
+                        _this.props.onEndReached();
+                    }
+                }
             }
         };
         _this._onLayout = function (event) {

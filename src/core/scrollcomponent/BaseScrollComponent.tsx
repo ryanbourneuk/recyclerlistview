@@ -14,6 +14,7 @@ export interface ScrollComponentProps {
     renderFooter?: () => JSX.Element | JSX.Element[] | null;
     scrollThrottle?: number;
     useWindowScroll?: boolean;
+    onEndReached?: () => void;
     onLayout?: any;
     renderContentContainer?: (props?: object, children?: React.ReactNode) => React.ReactNode | null;
     renderAheadOffset: number;
